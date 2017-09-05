@@ -1,13 +1,83 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.example.user.bukbol.Fragment.ProfileFragment">
-
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+<?xml version="1.0" encoding="utf-8"?>
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="hello profile" />
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:layout_margin="@dimen/small_margin"
+            android:background="@android:color/white"
+            android:padding="@dimen/wide_margin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:elevation="2dp"
+            android:layout_marginBottom="@dimen/wide_margin">
 
-</FrameLayout>
+            <TextView
+                android:textColor="@color/colorPrimaryDark"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="EDIT"/>
+            <ImageView
+                android:id="@+id/profile_avatar"
+                android:layout_centerHorizontal="true"
+                android:layout_width="@dimen/avatar"
+                android:layout_height="@dimen/avatar"
+                android:src="@drawable/ic_account"
+                android:tint="@color/colorPrimaryDark"
+                />
+            <TextView
+                android:layout_below="@id/profile_avatar"
+                android:id="@+id/profile_name"
+                android:textAlignment="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Adylan Roaffa"
+                android:textSize="@dimen/title"
+                android:layout_marginBottom="@dimen/tiny_margin"
+                />
+
+            <TextView
+                android:id="@+id/profile_email"
+                android:textAlignment="center"
+                android:layout_below="@id/profile_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="adylan@somewhere.com"
+                android:textSize="@dimen/subheading"
+                android:layout_marginBottom="@dimen/tiny_margin"
+                />
+            <TextView
+                android:id="@+id/profile_notelp"
+                android:textAlignment="center"
+                android:layout_below="@id/profile_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="+62xxxxxxxx"
+                android:textSize="@dimen/subheading"
+                android:layout_marginBottom="@dimen/tiny_margin"
+                />
+        </RelativeLayout>
+
+
+        <ListView
+            android:id="@+id/profile_lv"
+            android:background="@android:color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/wide_margin"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:background="@android:color/white"
+            android:text="LOGOUT"
+            android:elevation="2dp"
+            android:textColor="@color/colorAccent"
+            android:padding="@dimen/wide_margin"
+            android:textSize="@dimen/title"/>
+
+    </LinearLayout>
