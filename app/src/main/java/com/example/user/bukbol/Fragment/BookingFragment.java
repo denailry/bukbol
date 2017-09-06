@@ -24,6 +24,9 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static android.R.attr.key;
+import static android.R.attr.windowSoftInputMode;
+
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -34,6 +37,7 @@ public class BookingFragment extends Fragment implements BookingListener{
     SearchView searchBooking;
 
     ArrayList<TempatFutsal> listTempatFutsal = new ArrayList<>();
+
     BookingCardAdapter adapter;
 
     @BindView(R.id.rv_home_booking)
@@ -61,11 +65,12 @@ public class BookingFragment extends Fragment implements BookingListener{
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
 
         searchBooking.setSubmitButtonEnabled(true);
+        rvHomeBooking.requestFocus();
         searchBooking.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
                 searchLangsung(s);
-                return true;
+                return false;
             }
 
             @Override

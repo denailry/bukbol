@@ -1,30 +1,15 @@
 package com.example.user.bukbol;
 
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-
 import android.content.Intent;
-
-import android.support.annotation.NonNull;
-import android.support.design.widget.BottomNavigationView;
+import android.os.Bundle;
 import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-
-
-
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 
-import com.example.user.bukbol.Fragment.ProfileFragment;
-import com.example.user.bukbol.Fragment.BookingFragment;
-import com.example.user.bukbol.Fragment.ProfileFragment;
 import com.example.user.bukbol.adapter.TabFragmentPagerBookingAdapter;
 
 public class MainActivity extends AppCompatActivity {
@@ -70,9 +55,11 @@ public class MainActivity extends AppCompatActivity {
 
         switch (item.getItemId()){
             case R.id.profil :
-
+                intent = new Intent(MainActivity.this, ProfileActivity.class);
+                startActivity(intent);
                 break;
         }
+
         return true;
     }
 }
