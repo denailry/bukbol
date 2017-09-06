@@ -20,7 +20,7 @@ import butterknife.ButterKnife;
 
 public class Matchmaking extends RecyclerView.Adapter<Matchmaking.ViewHolder> {
 
-    private List<> itemList;
+    private List<String> itemList;
 
     class ViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.iv_icon_adapt_match) ImageView ivIcon;

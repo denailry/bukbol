@@ -19,4 +19,12 @@
         <requestFocus />
     </SearchView>
 
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
+        android:id="@+id/rv_home_booking"></android.support.v7.widget.RecyclerView>
+
 </LinearLayout>
