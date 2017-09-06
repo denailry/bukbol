@@ -42,7 +42,7 @@ public class SplashScreenActivity extends AppCompatActivity {
 
 
 
-                if  ((Session.username!=null)) {
+                if  ((Session.user!=null)) {
                     Intent i = new Intent(SplashScreenActivity.this, MainActivity.class);
                     startActivity(i);
                 }

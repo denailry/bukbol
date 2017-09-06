@@ -25,7 +25,6 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static com.example.user.bukbol.API.Session.username;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -36,6 +35,7 @@ public class LoginActivity extends AppCompatActivity {
     EditText passwordField;
     private LinearLayout createAccountLayout;
     private List<PersonDataset> persons;
+    private PersonDataset currentSession;
     private boolean isSuccess;
 
     @Override
@@ -91,7 +91,7 @@ public class LoginActivity extends AppCompatActivity {
                 if (isSuccess) {
                     Intent i = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(i);
-                    Session.username=usernameField.getText().toString();
+                    Session.user = currentSession;
                     finish();
                 } else {
                     Toast.makeText(LoginActivity.this, "Username and Password doesn't match.", Toast.LENGTH_SHORT).show();
@@ -111,6 +111,7 @@ public class LoginActivity extends AppCompatActivity {
 
         for (int i=0;i<persons.size();i++){
             if ((usernameText.equals(persons.get(i).getUsername()))&&(passwordText.equals(persons.get(i).getPassword()))){
+                currentSession=persons.get(i);
                 return true;
             }
         }
