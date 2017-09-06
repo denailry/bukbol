@@ -1,6 +1,7 @@
 package com.example.user.bukbol.Fragment;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -14,6 +15,7 @@ import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.example.user.bukbol.R;
+import com.example.user.bukbol.TempatFutsalDetailActivity;
 import com.example.user.bukbol.adapter.BookingCardAdapter;
 import com.example.user.bukbol.data.TempatFutsal;
 import com.example.user.bukbol.listener.BookingListener;
@@ -102,6 +104,7 @@ public class BookingFragment extends Fragment implements BookingListener{
 
     @Override
     public void onCardClicked(TempatFutsal tempatFutsal) {
-
+        Intent intent = new Intent(getActivity(), TempatFutsalDetailActivity.class);
+        startActivity(intent);
     }
 }
