@@ -4,7 +4,9 @@ package com.example.user.bukbol.data;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class FieldDataset {
+public class
+
+FieldDataset {
 
     @SerializedName("id")
     @Expose
