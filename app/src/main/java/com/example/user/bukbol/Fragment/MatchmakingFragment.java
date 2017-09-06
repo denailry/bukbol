@@ -2,15 +2,19 @@ package com.example.user.bukbol.Fragment;
 
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
+import android.widget.SearchView;
 
 import com.example.user.bukbol.R;
+import com.example.user.bukbol.adapter.MatchmakingAdapter;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -20,13 +24,12 @@ import butterknife.ButterKnife;
  */
 public class MatchmakingFragment extends Fragment {
 
-    @BindView(R.id.tv_challenge_adapt_match) TextView tvChallenge;
     @BindView(R.id.dots_frag_match) LinearLayout cntDots;
-    @BindView(R.id.iv_icon_adapt_match) ImageView ivIcon;
+    @BindView(R.id.rv_frag_match) RecyclerView rv;
+    @BindView(R.id.search_frag_match) SearchView sv;
+    @BindView(R.id.viewpager_frag_match) ViewPager vp;
 
-    public MatchmakingFragment() {
-        // Required empty public constructor
-    }
+    public MatchmakingFragment() {}
 
 
     @Override
@@ -37,4 +40,10 @@ public class MatchmakingFragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        rv.setLayoutManager(new LinearLayoutManager(getContext()));
+        rv.setAdapter(new MatchmakingAdapter());
+    }
 }
