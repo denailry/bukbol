@@ -1,12 +1,12 @@
 package com.example.user.bukbol.Fragment;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +14,7 @@ import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.example.user.bukbol.R;
+import com.example.user.bukbol.TempatFutsalDetailActivity;
 import com.example.user.bukbol.adapter.BookingCardAdapter;
 import com.example.user.bukbol.data.TempatFutsal;
 import com.example.user.bukbol.listener.BookingListener;
@@ -33,6 +34,7 @@ public class BookingFragment extends Fragment implements BookingListener{
     SearchView searchBooking;
 
     ArrayList<TempatFutsal> listTempatFutsal = new ArrayList<>();
+
     BookingCardAdapter adapter;
 
     @BindView(R.id.rv_home_booking)
@@ -42,6 +44,11 @@ public class BookingFragment extends Fragment implements BookingListener{
         // Required empty public constructor
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        rvHomeBooking.requestFocus();
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -60,11 +67,12 @@ public class BookingFragment extends Fragment implements BookingListener{
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
 
         searchBooking.setSubmitButtonEnabled(true);
+        rvHomeBooking.requestFocus();
         searchBooking.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
                 searchLangsung(s);
-                return true;
+                return false;
             }
 
             @Override
@@ -102,6 +110,7 @@ public class BookingFragment extends Fragment implements BookingListener{
 
     @Override
     public void onCardClicked(TempatFutsal tempatFutsal) {
-
+        Intent intent = new Intent(getActivity(), TempatFutsalDetailActivity.class);
+        startActivity(intent);
     }
 }

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.user.bukbol.DetailProfileActivity"
+    >
+
+    <Toolbar
+        android:id="@+id/profile_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryDark"
+        android:navigationIcon="@drawable/ic_back"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="FAQ"
+            android:textSize="@dimen/title"
+            android:textColor="@android:color/white"/>
+    </Toolbar>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/wide_margin"
+            android:layout_marginTop="@dimen/wide_margin"
+            android:layout_marginBottom="@dimen/small_margin"
+            android:textSize="@dimen/subheading"
+            android:text="Tata Cara Pembayaran"
+            />
+
+        <TextView
+            android:id="@+id/tata_cara_TV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/wide_margin"
+            android:paddingTop="@dimen/small_margin"
+            android:paddingBottom="@dimen/small_margin"
+            android:background="@android:color/white"
+            android:text=""
+            android:elegantTextHeight="true"
+            android:elevation="@dimen/cardview_default_elevation"/>
+
+
+    </LinearLayout>
+
+</LinearLayout>
