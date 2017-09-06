@@ -36,7 +36,6 @@ public class BookingCardAdapter extends RecyclerView.Adapter<BookingCardAdapter.
 
         @BindView(R.id.txt_nama_tempat_detail) TextView txtNamaTempat;
         @BindView(R.id.txt_alamat_detail) TextView txtAlamat;
-        @BindView(R.id.txt_jam_detail) TextView txtJam;
         @BindView(R.id.txt_harga_detail) TextView txtHarga;
         @BindView(R.id.img_detail_full) ImageView imgFull;
         @BindView(R.id.card_book)
@@ -63,7 +62,6 @@ public class BookingCardAdapter extends RecyclerView.Adapter<BookingCardAdapter.
 
         holder.txtNamaTempat.setText(tempatFutsal.getNama());
         holder.txtAlamat.setText(tempatFutsal.getAlamat());
-        holder.txtJam.setText(tempatFutsal.getJam());
         holder.txtHarga.setText(tempatFutsal.getHarga());
         holder.imgFull.setImageResource(tempatFutsal.getGambar());
 
