@@ -75,4 +75,16 @@ public class ProfileActivity extends AppCompatActivity {
         listView = (ListView) findViewById(R.id.profile_lv);
         listView.setAdapter(adapter);
     }
+
+    @Override
+    protected void onResume() {
+
+        super.onResume();
+
+        profileName.setText(Session.user.getName());
+        profileEmail.setText(Session.user.getEmail());
+        profilePhone.setText(Session.user.getPhone());
+
+
+    }
 }
