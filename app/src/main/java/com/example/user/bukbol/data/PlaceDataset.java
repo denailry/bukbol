@@ -24,6 +24,12 @@ public class PlaceDataset {
     @SerializedName("description")
     @Expose
     private String description;
+    @SerializedName("low_price")
+    @Expose
+    private int lowPrice;
+    @SerializedName("high_price")
+    @Expose
+    private int highPrice;
 
     public PlaceDataset(Integer id, String name, String address, Integer openHour, Integer closeHour, String description) {
         this.id = id;
@@ -82,4 +88,19 @@ public class PlaceDataset {
         this.description = description;
     }
 
+    public int getLowPrice() {
+        return lowPrice;
+    }
+
+    public void setLowPrice(int lowPrice) {
+        this.lowPrice = lowPrice;
+    }
+
+    public int getHighPrice() {
+        return highPrice;
+    }
+
+    public void setHighPrice(int highPrice) {
+        this.highPrice = highPrice;
+    }
 }
