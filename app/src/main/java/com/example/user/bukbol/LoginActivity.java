@@ -19,7 +19,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        createAccountTV = (TextView) findViewById(R.id.create_account_tv);
+        createAccountTV = (TextView) findViewById(R.id.login_create_account_tv);
         loginButton = (Button) findViewById(R.id.login_button);
 
         createAccountTV.setOnClickListener(new View.OnClickListener() {

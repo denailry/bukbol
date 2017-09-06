@@ -9,7 +9,7 @@
         android:navigationIcon="@drawable/ic_back"
         android:background="@color/colorPrimaryDark"
         android:titleTextColor="@android:color/white"
-        android:focusableInTouchMode="true"
+
         >
         <TextView
             android:layout_width="wrap_content"
@@ -29,6 +29,8 @@
             android:orientation="vertical"
             android:background="@android:color/white"
             android:elevation="2dp">
+
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -70,13 +72,17 @@
                 android:textAllCaps="false"
                 android:textColor="@android:color/white"
                 android:textStyle="bold"
-                android:backgroundTint="@color/colorAccent"
+                android:backgroundTint="@color/colorPrimaryDark"
                 android:padding="@dimen/wide_margin"
                 android:layout_marginBottom="@dimen/wide_margin" />
 
             <include
                 android:visibility="gone"
                 layout="@layout/change_password_layout"/>
+
+
+
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
