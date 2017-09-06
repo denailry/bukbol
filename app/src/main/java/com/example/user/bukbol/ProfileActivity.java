@@ -6,22 +6,35 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toolbar;
 
+import com.example.user.bukbol.API.Session;
 import com.example.user.bukbol.adapter.ProfileAdapter;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class ProfileActivity extends AppCompatActivity {
     private ListView listView;
     private ArrayList<ProfileItem> profileItems;
     private ProfileAdapter adapter;
-    //@BindView(R.id.profile_toolbar) Toolbar toolbar;
+    @BindView(R.id.profile_name)
+    TextView profileName;
+    @BindView(R.id.profile_email)
+    TextView profileEmail;
+    @BindView(R.id.profile_notelp)
+    TextView profilePhone;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+        ButterKnife.bind(this);
         Toolbar toolbar = (Toolbar) findViewById(R.id.profile_toolbar);
         toolbar.setNavigationIcon(R.drawable.ic_back);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -30,6 +43,11 @@ public class ProfileActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+
+        profileName.setText(Session.user.getName());
+        profileEmail.setText(Session.user.getEmail());
+        profilePhone.setText(Session.user.getPhone());
 
 
        initProfileList();

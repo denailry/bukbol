@@ -24,38 +24,46 @@
             android:textSize="@dimen/subheading"
             android:textColor="@android:color/white"/>
         <EditText
+            android:id="@+id/register_fullname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@android:color/white"
             android:layout_marginBottom="24sp"/><TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="E-mail"
+            android:text="Username"
             android:textSize="@dimen/subheading"
             android:textColor="@android:color/white"/>
         <EditText
+            android:id="@+id/register_username"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@android:color/white"
             android:layout_marginBottom="24sp"/>
 
         <TextView
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Password"
             android:textSize="@dimen/subheading"
             android:textColor="@android:color/white"/>
         <EditText
+            android:id="@+id/register_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@android:color/white"
-            android:layout_marginBottom="24dp"/><TextView
+            android:inputType="textPassword"
+            android:layout_marginBottom="24dp"/>
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Confirm Password"
             android:textSize="@dimen/subheading"
             android:textColor="@android:color/white"/>
         <EditText
+            android:id="@+id/register_confirm"
+            android:inputType="textPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@android:color/white"

@@ -167,7 +167,18 @@ public class TempatFutsalDetailActivity extends AppCompatActivity implements Jam
     private void callJamData() {
 
         ApiInterface service = ApiClient.getClient().create(ApiInterface.class);
-        
+        Call<BookModel> call = service.getBooks(Session.user.getUsername());
+        call.enqueue(new Callback<BookModel>() {
+            @Override
+            public void onResponse(Call<BookModel> call, Response<BookModel> response) {
+                
+            }
+
+            @Override
+            public void onFailure(Call<BookModel> call, Throwable t) {
+
+            }
+        });
 
     }
 

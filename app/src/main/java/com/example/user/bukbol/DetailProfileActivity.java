@@ -15,11 +15,15 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.user.bukbol.API.Session;
 import com.example.user.bukbol.adapter.BookingCardAdapter;
 import com.example.user.bukbol.data.PlaceDataset;
 import com.example.user.bukbol.listener.BookingListener;
 
 import java.util.ArrayList;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class DetailProfileActivity extends AppCompatActivity implements BookingListener{
 
@@ -34,6 +38,13 @@ public class DetailProfileActivity extends AppCompatActivity implements BookingL
     ArrayList<PlaceDataset> listTempatFutsal = new ArrayList<>();
 
     //Account setting
+    @BindView(R.id.account_username) TextView usernameTV;
+    @BindView(R.id.account_email) TextView emailTV;
+    @BindView(R.id.account_ttl) TextView ttlTV;
+    @BindView(R.id.account_telp) TextView telpTV;
+    @BindView(R.id.account_alamat) TextView alamatTV;
+    @BindView(R.id.account_fullname) TextView fullnameTV;
+
     private Button changePasswordButton;
 
     @Override
@@ -48,16 +59,22 @@ public class DetailProfileActivity extends AppCompatActivity implements BookingL
         switch (profileType){
             case "FAQ":{
                 setContentView(R.layout.profile_faq);
+
+                ButterKnife.bind(this);
                 initHelp();
                 break;
             }
             case "Account Settings":{
                 setContentView(R.layout.profile_account);
-                initChangePassword();
+
+                ButterKnife.bind(this);
+                initAccountSettings();
                 break;
             }
             case "Notifications":{
                 setContentView(R.layout.profile_notification);
+
+                ButterKnife.bind(this);
                 notificationLV = (ListView) findViewById(R.id.notification_lv);
                 initNotifications();
                 break;
@@ -118,7 +135,15 @@ public class DetailProfileActivity extends AppCompatActivity implements BookingL
 
     }
 
-    private void initChangePassword(){
+    private void initAccountSettings(){
+        fullnameTV.setText(Session.user.getName());
+        ttlTV.setText(Session.user.getDate());
+        alamatTV.setText(Session.user.getAddress());
+        usernameTV.setText(Session.user.getUsername());
+        emailTV.setText(Session.user.getEmail());
+        telpTV.setText(Session.user.getPhone());
+
+
         changePasswordButton = (Button) findViewById(R.id.change_password_button);
         changePasswordButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -143,8 +168,7 @@ public class DetailProfileActivity extends AppCompatActivity implements BookingL
                             changePassword.setVisibility(View.GONE);
                         }
                         else {
-                            Toast.makeText(DetailProfileActivity.this, "Please check again.", Toast.LENGTH_SHORT).show();
-                            Toast.makeText(DetailProfileActivity.this, confirmPassword.getText(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(DetailProfileActivity.this, "Please check your password.", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });

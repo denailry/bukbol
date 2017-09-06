@@ -28,6 +28,16 @@ public class PersonDataset {
     @Expose
     private String date;
 
+    public PersonDataset(String username, String name, String email, String phone, String address, String password, String date) {
+        this.username = username;
+        this.name = name;
+        this.email = email;
+        this.phone = phone;
+        this.address = address;
+        this.password = password;
+        this.date = date;
+    }
+
     public String getUsername() {
         return username;
     }

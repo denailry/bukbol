@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.example.user.bukbol.API.ApiClient;
 import com.example.user.bukbol.API.ApiInterface;
+import com.example.user.bukbol.API.Session;
 import com.example.user.bukbol.data.PersonDataset;
 import com.example.user.bukbol.data.PersonModel;
 
@@ -24,23 +25,28 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+
 public class LoginActivity extends AppCompatActivity {
 
     private TextView createAccountTV;
     private Button loginButton;
 
-    @BindView(R.id.login_email_edit_text) EditText usernameField;
-    @BindView(R.id.login_password_edit_text) EditText passwordField;
+     EditText usernameField;
+    EditText passwordField;
     private LinearLayout createAccountLayout;
     private List<PersonDataset> persons;
+    private PersonDataset currentSession;
+    private boolean isSuccess;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
-        loadUsernameData();
+        isSuccess=false;
 
+        usernameField = (EditText) findViewById(R.id.login_email_edit_text);
+        passwordField = (EditText) findViewById(R.id.login_password_edit_text);
         createAccountTV = (TextView) findViewById(R.id.login_create_account_tv);
         loginButton = (Button) findViewById(R.id.login_button);
 
@@ -48,37 +54,48 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Intent i = new Intent(LoginActivity.this,RegisterActivity.class);
+                Intent i = new Intent(LoginActivity.this, RegisterActivity.class);
                 startActivity(i);
 
             }
         });
-
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(validateLogin(usernameField,passwordField,persons)) {
-                    Intent i = new Intent(LoginActivity.this, MainActivity.class);
-                    startActivity(i);
-                }
-                else {
-                    Toast.makeText(LoginActivity.this, "Username and Password doesn't match.", Toast.LENGTH_SHORT).show();
-                }
+                loadUsernameData();
+
             }
+
         });
+
+
     }
 
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        isSuccess=false;
+    }
 
     private void loadUsernameData(){
         ApiClient apiClient = new ApiClient();
         ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
 
-        Call<PersonModel> personCall = apiInterface.getUsernames("");
+        final Call<PersonModel> personCall = apiInterface.getUsernames("");
         personCall.enqueue(new Callback<PersonModel>() {
             @Override
             public void onResponse(Call<PersonModel> call, Response<PersonModel> response) {
                 persons = response.body().getPersonDataset();
+                isSuccess = validateLogin(usernameField,passwordField,persons);
+                if (isSuccess) {
+                    Intent i = new Intent(LoginActivity.this, MainActivity.class);
+                    startActivity(i);
+                    Session.user = currentSession;
+                    finish();
+                } else {
+                    Toast.makeText(LoginActivity.this, "Username and Password doesn't match.", Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override
@@ -93,9 +110,8 @@ public class LoginActivity extends AppCompatActivity {
         String passwordText = passwordField.getText().toString();
 
         for (int i=0;i<persons.size();i++){
-            if ((usernameText==persons.get(i).getUsername())&&(passwordText==persons.get(i).getPassword())){
-                Log.d("login",persons.get(i).getUsername());
-                Log.d("login",persons.get(i).getPassword());
+            if ((usernameText.equals(persons.get(i).getUsername()))&&(passwordText.equals(persons.get(i).getPassword()))){
+                currentSession=persons.get(i);
                 return true;
             }
         }
