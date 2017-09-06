@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.user.bukbol.DetailProfileActivity"
+    >
+
+    <Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryDark"
+        android:navigationIcon="@drawable/ic_back"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/wide_margin"
+            android:layout_marginTop="@dimen/wide_margin"
+            android:layout_marginBottom="@dimen/small_margin"
+            android:textSize="@dimen/title"
+            android:text="Tata Cara Pembayaran"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/wide_margin"
+            android:paddingTop="@dimen/small_margin"
+            android:paddingBottom="@dimen/small_margin"
+            android:background="@android:color/white"
+            android:text="      Setelah pemesanan,  anda dipersilahkan untuk segera membayar ke rekening BANK AAA XXXXXXXX dengan jumlah pembayaran sesuai dengan harga lapangan ditambah dengan kode unik.
+        Kami akan memeriksa status pembayaran Anda setiap hari pada pukul:
+1. 06.00 WIB
+2. 09.00 WIB
+3. 12.00 WIB
+4. 15.00 WIB
+5. 18.00 WIB
+6. 21.00 WIB
+7. 24.00 WIB
+
+Jika Anda melakukan pembayaran setelah lewat tenggat waktu pembayaran dan tidak melewati masa pemeriksaan dari kami, maka pesanan anda akan segera dibatalkan."
+            android:elegantTextHeight="true"
+            android:elevation="@dimen/cardview_default_elevation"/>
+
+
+    </LinearLayout>
+
+</LinearLayout>
