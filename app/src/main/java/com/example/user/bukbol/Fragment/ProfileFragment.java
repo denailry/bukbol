@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,11 +37,10 @@ public class ProfileFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
         profileItems = new ArrayList<>();
-
-
         profileItems.add(new ProfileItem("Account Settings",R.drawable.ic_person));
-        profileItems.add(new ProfileItem("Help",R.drawable.ic_help));
+        profileItems.add(new ProfileItem("FAQ",R.drawable.ic_help));
         profileItems.add(new ProfileItem("Notifications",R.drawable.ic_notification));
         profileItems.add(new ProfileItem("Settings",R.drawable.ic_settings));
 
@@ -58,7 +58,8 @@ public class ProfileFragment extends Fragment {
 
 
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
