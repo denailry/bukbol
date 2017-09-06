@@ -22,7 +22,6 @@ import butterknife.OnClick;
  */
 
 public class MatchmakingAdapter extends RecyclerView.Adapter<MatchmakingAdapter.ViewHolder> {
-
     private final String TV_CHALLENGE = "Challenge";
     private final String TV_CANCEL = "Cancel";
 
