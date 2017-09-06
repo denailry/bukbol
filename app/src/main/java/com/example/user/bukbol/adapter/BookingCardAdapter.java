@@ -62,7 +62,7 @@ public class BookingCardAdapter extends RecyclerView.Adapter<BookingCardAdapter.
 
         holder.txtNamaTempat.setText(tempatFutsal.getName());
         holder.txtAlamat.setText(tempatFutsal.getAddress());
-        holder.txtHarga.setText("Rp "+editRupiah(String.valueOf(tempatFutsal.getLowPrice() ))+"  -  "+editRupiah(String.valueOf(tempatFutsal.getHighPrice())));
+        holder.txtHarga.setText("Rp "+editRupiah(String.valueOf(tempatFutsal.getLowPrice() ))+"  -  "+editRupiah(String.valueOf(tempatFutsal.getHighPrice()))+"/hour");
         //holder.imgFull.setImageResource(tempatFutsal);
 
         holder.card.setOnClickListener(new View.OnClickListener() {

@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.example.user.bukbol.R;
 import com.example.user.bukbol.data.PlaceDataset;
 import com.example.user.bukbol.listener.BookingListener;
+import com.example.user.bukbol.listener.JamListener;
 
 import java.util.ArrayList;
 
@@ -18,27 +19,24 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
- * Created by User on 06/09/2017.
+ * Created by User on 07/09/2017.
  */
 
-public class HistoryBookAdapter extends RecyclerView.Adapter<HistoryBookAdapter.ViewHolder> {
+public class JamAdapter extends RecyclerView.Adapter<JamAdapter.ViewHolder> {
 
+    ArrayList<Integer> listJam;
+    JamListener listener;
 
-    private ArrayList<PlaceDataset> listTempatFutsal;
-    BookingListener listener;
-
-    public HistoryBookAdapter(ArrayList<PlaceDataset> listTempatFutsal, BookingListener listener) {
-        this.listTempatFutsal = listTempatFutsal;
+    public JamAdapter(ArrayList<Integer> listTemporal, JamListener listener) {
+        this.listJam = listTemporal;
         this.listener = listener;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
 
-        @BindView(R.id.txt_nama_tempat_histori) TextView txtNamaTempat;
-        @BindView(R.id.txt_alamat_histori) TextView txtAlamat;
-        @BindView(R.id.txt_histori_status) TextView txtStatus;
-        @BindView(R.id.txt_harga_histori) TextView txtHarga;
-        @BindView(R.id.card_book) CardView card;
+        @BindView(R.id.txt_jam_order)
+        TextView txtJam;
+        @BindView(R.id.carddosen) CardView carddosen;
 
 
         public ViewHolder(View v){
@@ -50,24 +48,35 @@ public class HistoryBookAdapter extends RecyclerView.Adapter<HistoryBookAdapter.
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.card_histori, parent, false);
+                .inflate(R.layout.card_jam, parent, false);
+
+
 
         return  new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        final PlaceDataset tempatFutsal = listTempatFutsal.get(position);
+        final int jam = listJam.get(position);
 
-        holder.txtNamaTempat.setText(tempatFutsal.getName());
-        holder.txtAlamat.setText(tempatFutsal.getAddress());
-        holder.txtHarga.setText(tempatFutsal.getLowPrice());
-        holder.txtStatus.setText("On progress");
+        String hope;
+        if (jam<10){
+            hope = "0"+jam+".00 - ";
+        }else{
+            hope = jam+".00 - ";
+        }
 
-        holder.card.setOnClickListener(new View.OnClickListener() {
+        String banget;
+        if (jam+1<10){
+            banget = "0"+jam+".00 - ";
+        }else{
+            banget = jam+".00 - ";
+        }
+
+        ;holder.carddosen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                listener.onCardClicked(tempatFutsal);
+
             }
         });
 
@@ -75,15 +84,16 @@ public class HistoryBookAdapter extends RecyclerView.Adapter<HistoryBookAdapter.
 
     @Override
     public int getItemCount() {
-        return listTempatFutsal.size();
+        return listJam.size();
     }
 
     @Override
     public void onAttachedToRecyclerView(RecyclerView recyclerView) {
         super.onAttachedToRecyclerView(recyclerView);
     }
-    public void refreshData(ArrayList<PlaceDataset> listTempatFutsal){
-        this.listTempatFutsal = listTempatFutsal;
+    public void refreshData(ArrayList<Integer> listTempatFutsal){
+        this.listJam = listTempatFutsal;
         notifyDataSetChanged();
     }
+
 }

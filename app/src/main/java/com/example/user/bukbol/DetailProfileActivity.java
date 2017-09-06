@@ -105,7 +105,7 @@ public class DetailProfileActivity extends AppCompatActivity implements BookingL
     }
 
     private void callDataFavoriteBooking() {
-        PlaceDataset tim = new PlaceDataset(1,"Futsal Town","Jalan bagusrangin", 8,21,"aplikasi baik");
+        PlaceDataset tim = new PlaceDataset(1,"Futsal Town","Jalan bagusrangin", 8,21,"aplikasi baik",20000, 40000);
         listTempatFutsal.add(tim);
         listTempatFutsal.add(tim);
         listTempatFutsal.add(tim);
