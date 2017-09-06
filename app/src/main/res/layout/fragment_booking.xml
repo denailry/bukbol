@@ -5,5 +5,18 @@
     android:orientation="vertical"
     tools:context="com.example.user.bukbol.Fragment.BookingFragment">
 
+    <SearchView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="20dp"
+        android:id="@+id/search_view_booking"
+        android:iconifiedByDefault="false"
+        android:queryHint="venue or location"
+        android:background="@drawable/rounded"
+        android:inputType="text">
+        <requestFocus />
+    </SearchView>
 
 </LinearLayout>

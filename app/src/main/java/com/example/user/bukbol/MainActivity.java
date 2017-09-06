@@ -1,16 +1,16 @@
 package com.example.user.bukbol;
 
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.example.user.bukbol.Fragment.BookingFragment;
 import com.example.user.bukbol.Fragment.MatchmakingFragment;
 import com.example.user.bukbol.Fragment.ProfileFragment;
 import com.example.user.bukbol.Fragment.TeamFragment;
@@ -18,10 +18,13 @@ import com.example.user.bukbol.adapter.TabFragmentPagerBookingAdapter;
 
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
+    private String TAG = "LOGGING";
+
     BottomNavigationView bottomNavigationView;
 
     //variabel pengingat bottomnavigationview utama sedang dimana
     int idBottomNavigationView = R.id.action_booking;
+    Fragment prevFragment = null;
 
     private TabLayout tabsBooking;
     private ViewPager pagerBooking;
@@ -31,14 +34,6 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //inisialisasi awal awal ketika baru buka, akan mngebuka fragment booking
-        if(savedInstanceState == null) {
-            getSupportFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.flContent, new BookingFragment())
-                    .commit();
-        }
-
         //inisialisasi bottom navigasi
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
@@ -47,8 +42,8 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         tabsBooking = (TabLayout)findViewById(R.id.tabs);
         pagerBooking.setAdapter(new TabFragmentPagerBookingAdapter(getSupportFragmentManager()));
 
-        tabsBooking.setTabTextColors(getResources().getColor(R.color.colorPrimary),
-                getResources().getColor(android.R.color.black));
+        tabsBooking.setTabTextColors(getResources().getColor(R.color.colorAccent),
+                getResources().getColor(android.R.color.white));
         tabsBooking.setupWithViewPager(pagerBooking);
         tabsBooking.setTabGravity(TabLayout.GRAVITY_FILL);
         setViewPagerandTabs(View.VISIBLE);
@@ -60,10 +55,10 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
         Fragment fragment = null;
 
+
         if (item.getItemId() != idBottomNavigationView){
             switch (item.getItemId()){
                 case R.id.action_booking:
-                    fragment = new BookingFragment();
                     idBottomNavigationView = item.getItemId();
                     setViewPagerandTabs(View.VISIBLE);
                     break;
@@ -84,10 +79,20 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                     break;
             }
 
-            getSupportFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.flContent, fragment)
-                    .commit();
+            if (idBottomNavigationView != R.id.action_booking){
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.flContent, fragment)
+                        .commit();
+            }else{
+                Log.d(TAG, "onNavigationItemSelected: ");
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .remove(prevFragment)
+                        .commit();
+            }
+
+            prevFragment = fragment;
         }
 
 
