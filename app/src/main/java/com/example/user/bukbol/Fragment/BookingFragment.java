@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.example.user.bukbol.R;
 import com.example.user.bukbol.TempatFutsalDetailActivity;
 import com.example.user.bukbol.adapter.BookingCardAdapter;
+import com.example.user.bukbol.data.PlaceDataset;
 import com.example.user.bukbol.data.TempatFutsal;
 import com.example.user.bukbol.listener.BookingListener;
 
@@ -33,7 +34,7 @@ public class BookingFragment extends Fragment implements BookingListener{
 
     SearchView searchBooking;
 
-    ArrayList<TempatFutsal> listTempatFutsal = new ArrayList<>();
+    ArrayList<PlaceDataset> listTempatFutsal = new ArrayList<>();
 
     BookingCardAdapter adapter;
 
@@ -94,10 +95,6 @@ public class BookingFragment extends Fragment implements BookingListener{
     }
 
     private void callDataHomeBooking() {
-        listTempatFutsal.add(new TempatFutsal("Saraga", "jalan ganesha","08.00 - 09.00","Rp 30.000 - 50.000/hour",R.drawable.tes));
-        listTempatFutsal.add(new TempatFutsal("Saraga", "jalan ganesha","08.00 - 09.00","Rp 30.000 - 50.000/hour",R.drawable.tes));
-        listTempatFutsal.add(new TempatFutsal("Saraga", "jalan ganesha","08.00 - 09.00","Rp 30.000 - 50.000/hour",R.drawable.tes));
-        listTempatFutsal.add(new TempatFutsal("Saraga", "jalan ganesha","08.00 - 09.00","Rp 30.000 - 50.000/hour",R.drawable.tes));
 
         adapter.refreshData(listTempatFutsal);
     }
@@ -109,7 +106,7 @@ public class BookingFragment extends Fragment implements BookingListener{
     }
 
     @Override
-    public void onCardClicked(TempatFutsal tempatFutsal) {
+    public void onCardClicked(PlaceDataset tempatFutsal) {
         Intent intent = new Intent(getActivity(), TempatFutsalDetailActivity.class);
         startActivity(intent);
     }

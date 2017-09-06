@@ -25,6 +25,15 @@ public class PlaceDataset {
     @Expose
     private String description;
 
+    public PlaceDataset(Integer id, String name, String address, Integer openHour, Integer closeHour, String description) {
+        this.id = id;
+        this.name = name;
+        this.address = address;
+        this.openHour = openHour;
+        this.closeHour = closeHour;
+        this.description = description;
+    }
+
     public Integer getId() {
         return id;
     }

@@ -1,5 +1,6 @@
 package com.example.user.bukbol.listener;
 
+import com.example.user.bukbol.data.PlaceDataset;
 import com.example.user.bukbol.data.TempatFutsal;
 
 /**
@@ -8,6 +9,6 @@ import com.example.user.bukbol.data.TempatFutsal;
 
 public interface BookingListener {
 
-    void onCardClicked(TempatFutsal tempatFutsal);
+    void onCardClicked(PlaceDataset tempatFutsal);
 
 }

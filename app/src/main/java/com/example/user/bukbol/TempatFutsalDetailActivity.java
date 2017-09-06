@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import butterknife.BindView;
@@ -20,6 +21,15 @@ public class TempatFutsalDetailActivity extends AppCompatActivity {
     @BindView(R.id.btn_continue_tempat)
     Button btnContinue;
     @BindView(R.id.btn_book_tempat) Button btnBooking;
+
+    @BindView(R.id.txt_nama_tempat)
+    TextView txtNamaTempat;
+    @BindView(R.id.alamat_tempat) TextView txtAlamat;
+    @BindView(R.id.txt_jam_tempat) TextView txtJam;
+    @BindView(R.id.txt_deskripsi_tempat) TextView txtDeskripsiTempat;
+    @BindView(R.id.txt_detail_lapangan_tempat) TextView txtDetailLapangan;
+    @BindView(R.id.txt_tanggal_tempat) TextView txtTanggal;
+    
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
