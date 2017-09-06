@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context="com.example.user.bukbol.TempatFutsalDetailActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="230dp">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/tes"
+                android:scaleType="fitXY"
+                android:id="@+id/img_tempat"/>
+            <ImageView
+                android:id="@+id/arrow_left"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:src="@drawable/ababa" />
+
+            <ImageView
+                android:id="@+id/arrow_right"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/ababa2" />
+        </RelativeLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/txt_nama_tempat"
+            android:text="Futsal Town"
+            android:textColor="@color/colorPrimaryDark"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="15dp"
+            android:textStyle="bold"
+            android:textSize="25sp"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp">
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_action_location"
+                android:layout_margin="5dp"
+                android:layout_centerVertical="true"
+                android:id="@+id/location_tempat"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Jalan BagusRangin 1 no 69, lebak gede, bandung"
+                android:layout_marginRight="15dp"
+                android:layout_toRightOf="@+id/location_tempat"
+                android:layout_centerVertical="true"
+                android:textSize="14sp"
+                android:textColor="@android:color/black"
+                android:id="@+id/alamat_tempat"/>
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Jam Buka :"
+            android:textSize="16sp"
+            android:textColor="@color/colorPrimaryDark"
+            android:textStyle="bold"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="08.00 - 21.00"
+            android:textSize="14sp"
+            android:textColor="@android:color/black"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:id="@+id/txt_jam_tempat"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Deskripsi :"
+            android:textSize="16sp"
+            android:textColor="@color/colorPrimaryDark"
+            android:textStyle="bold"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Futsal Town merupakan sarana bermain futsal yang memiliki 3 lapangan."
+            android:textSize="14sp"
+            android:textColor="@android:color/black"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="5dp"
+            android:id="@+id/txt_deskripsi_tempat"/>
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_margin="10dp"
+                android:layout_marginBottom="15dp"
+                android:id="@+id/linear_pgn_booking">
+                <Spinner
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/spinner_lapangan_tempat"></Spinner>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" rumput sintetis, 70.000 weekdays, 80.000 weekend"
+                    android:textColor="@android:color/black"
+                    android:layout_marginTop="5dp"
+                    android:id="@+id/txt_detail_lapangan_tempat"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tanggal :"
+                    android:textSize="16sp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textStyle="bold"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="5dp"/>
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="6 September 2017"
+                        android:textColor="@android:color/black"
+                        android:id="@+id/txt_tanggal_tempat"
+                        android:layout_marginLeft="7dp"
+                        android:layout_toRightOf="@+id/img_date_tempat"
+                        android:layout_centerVertical="true"/>
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:src="@drawable/ic_action_date"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginTop="3dp"
+                        android:layout_marginBottom="3dp"
+                        android:id="@+id/img_date_tempat"/>
+                </RelativeLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Jam :"
+                    android:textSize="16sp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textStyle="bold"
+                    android:layout_marginTop="10dp"/>
+
+                <android.support.v7.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="170dp"
+                    android:layout_margin="10dp"
+                    android:id="@+id/rv_jam_tempat"></android.support.v7.widget.RecyclerView>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:id="@+id/relativ_tot_harga">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Total Harga :"
+                        android:textSize="16sp"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textStyle="bold"
+                        android:layout_centerVertical="true"
+                        android:id="@+id/no1"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/txt_total_harga_tempat"
+                        android:layout_toRightOf="@+id/no1"
+                        android:layout_marginLeft="5dp"
+                        android:textColor="@android:color/black"
+                        android:textStyle="bold"
+                        android:layout_centerVertical="true"
+                        android:textSize="15sp"
+                        android:text="20.000"/>
+                </RelativeLayout>
+                <Button
+                    android:layout_width="150dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center_horizontal"
+                    android:text="Book"
+                    android:textColor="@android:color/white"
+                    android:textSize="15sp"
+                    android:textAllCaps="false"
+                    android:layout_marginTop="10dp"
+                    android:id="@+id/btn_book_tempat"
+                    android:background="@drawable/rounded_button"/>
+            </LinearLayout>
+            <Button
+                android:layout_width="150dp"
+                android:layout_height="40dp"
+                android:id="@+id/btn_continue_tempat"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/rounded_button"
+                android:text="Continue"
+                android:textAllCaps="false"
+                android:textColor="@android:color/white"
+                android:textSize="15sp"
+                android:layout_marginTop="20dp"/>
+        </FrameLayout>
+
+    </LinearLayout>
+
+</ScrollView>

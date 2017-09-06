@@ -1,13 +1,12 @@
 package com.example.user.bukbol.Fragment;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +14,7 @@ import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.example.user.bukbol.R;
+import com.example.user.bukbol.TempatFutsalDetailActivity;
 import com.example.user.bukbol.adapter.BookingCardAdapter;
 import com.example.user.bukbol.data.TempatFutsal;
 import com.example.user.bukbol.listener.BookingListener;
@@ -23,9 +23,6 @@ import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-
-import static android.R.attr.key;
-import static android.R.attr.windowSoftInputMode;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -47,6 +44,11 @@ public class BookingFragment extends Fragment implements BookingListener{
         // Required empty public constructor
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        rvHomeBooking.requestFocus();
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -108,6 +110,7 @@ public class BookingFragment extends Fragment implements BookingListener{
 
     @Override
     public void onCardClicked(TempatFutsal tempatFutsal) {
-
+        Intent intent = new Intent(getActivity(), TempatFutsalDetailActivity.class);
+        startActivity(intent);
     }
 }
