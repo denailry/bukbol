@@ -16,7 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.user.bukbol.adapter.BookingCardAdapter;
-import com.example.user.bukbol.data.TempatFutsal;
+import com.example.user.bukbol.data.PlaceDataset;
 import com.example.user.bukbol.listener.BookingListener;
 
 import java.util.ArrayList;
@@ -31,7 +31,7 @@ public class DetailProfileActivity extends AppCompatActivity implements BookingL
     //Favorite
     BookingCardAdapter adapter;
     RecyclerView favoriteRV;
-    ArrayList<TempatFutsal> listTempatFutsal = new ArrayList<>();
+    ArrayList<PlaceDataset> listTempatFutsal = new ArrayList<>();
 
     //Account setting
     private Button changePasswordButton;
@@ -105,17 +105,16 @@ public class DetailProfileActivity extends AppCompatActivity implements BookingL
     }
 
     private void callDataFavoriteBooking() {
-        listTempatFutsal.add(new TempatFutsal("Saraga", "jalan ganesha","08.00 - 09.00","Rp 30.000 - 50.000/hour",R.drawable.tes));
-        listTempatFutsal.add(new TempatFutsal("Saraga", "jalan ganesha","08.00 - 09.00","Rp 30.000 - 50.000/hour",R.drawable.tes));
-        listTempatFutsal.add(new TempatFutsal("Saraga", "jalan ganesha","08.00 - 09.00","Rp 30.000 - 50.000/hour",R.drawable.tes));
-        listTempatFutsal.add(new TempatFutsal("Saraga", "jalan ganesha","08.00 - 09.00","Rp 30.000 - 50.000/hour",R.drawable.tes));
-
+        PlaceDataset tim = new PlaceDataset(1,"Futsal Town","Jalan bagusrangin", 8,21,"aplikasi baik");
+        listTempatFutsal.add(tim);
+        listTempatFutsal.add(tim);
+        listTempatFutsal.add(tim);
         adapter.refreshData(listTempatFutsal);
     }
 
 
     @Override
-    public void onCardClicked(TempatFutsal tempatFutsal) {
+    public void onCardClicked(PlaceDataset tempatFutsal) {
 
     }
 

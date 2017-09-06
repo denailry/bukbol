@@ -17,7 +17,6 @@ import com.example.user.bukbol.R;
 import com.example.user.bukbol.TempatFutsalDetailActivity;
 import com.example.user.bukbol.adapter.BookingCardAdapter;
 import com.example.user.bukbol.data.PlaceDataset;
-import com.example.user.bukbol.data.TempatFutsal;
 import com.example.user.bukbol.listener.BookingListener;
 
 import java.util.ArrayList;
@@ -96,6 +95,11 @@ public class BookingFragment extends Fragment implements BookingListener{
 
     private void callDataHomeBooking() {
 
+        PlaceDataset tim = new PlaceDataset(1,"Futsal Town","Jalan bagusrangin", 8,21,"aplikasi baik");
+        listTempatFutsal.add(tim);
+        listTempatFutsal.add(tim);
+        listTempatFutsal.add(tim);
+
         adapter.refreshData(listTempatFutsal);
     }
 
@@ -108,6 +112,22 @@ public class BookingFragment extends Fragment implements BookingListener{
     @Override
     public void onCardClicked(PlaceDataset tempatFutsal) {
         Intent intent = new Intent(getActivity(), TempatFutsalDetailActivity.class);
+        intent.putExtra("namaTempat",tempatFutsal.getName());
+        intent.putExtra("alamat",tempatFutsal.getAddress());
+        intent.putExtra("jam",ubahJam(tempatFutsal.getOpenHour())+" - "+ubahJam(tempatFutsal.getCloseHour()));
+        intent.putExtra("deskripsi",tempatFutsal.getDescription());
         startActivity(intent);
+    }
+
+    private String ubahJam(int i){
+        String hasil;
+
+        if (i<10){
+            hasil = "0"+i+".00";
+        }else{
+            hasil = i+"00";
+        }
+
+        return hasil;
     }
 }

@@ -1,15 +1,26 @@
 package com.example.user.bukbol;
 
+import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.user.bukbol.data.FieldDataset;
+
+import java.util.Calendar;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -29,7 +40,20 @@ public class TempatFutsalDetailActivity extends AppCompatActivity {
     @BindView(R.id.txt_deskripsi_tempat) TextView txtDeskripsiTempat;
     @BindView(R.id.txt_detail_lapangan_tempat) TextView txtDetailLapangan;
     @BindView(R.id.txt_tanggal_tempat) TextView txtTanggal;
-    
+    @BindView(R.id.location_tempat)
+    ImageView imgLocation;
+    @BindView(R.id.img_date_tempat) ImageView imgDate;
+    @BindView(R.id.spinner_lapangan_tempat)
+    Spinner spinnerLapangan;
+    @BindView(R.id.rv_jam_tempat)
+    RecyclerView rvJam;
+
+    static List<FieldDataset> listLapangan;
+
+    Calendar calendar = Calendar.getInstance();
+    int year= calendar.get(Calendar.YEAR);
+    int month = calendar.get(Calendar.MONTH);
+    int day = calendar.get(Calendar.DAY_OF_MONTH);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +61,23 @@ public class TempatFutsalDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_tempat_futsal_detail);
 
         ButterKnife.bind(this);
+
+        txtTanggal.setText(day+" - "+(month+1)+" - "+year);
+
+        Intent intent = getIntent();
+        String nama = intent.getStringExtra("namaTempat");
+        txtNamaTempat.setText(nama);
+
+        String alamat = intent.getStringExtra("alamat");
+        txtAlamat.setText(alamat);
+
+        String jamBuka = intent.getStringExtra("jam");
+        txtJam.setText(jamBuka);
+
+
+
+        String deskripsi = intent.getStringExtra("deskripsi");
+        txtDeskripsiTempat.setText(deskripsi);
 
         layoutBooking.setVisibility(View.GONE);
         btnContinue.setOnClickListener(new View.OnClickListener() {
@@ -54,7 +95,18 @@ public class TempatFutsalDetailActivity extends AppCompatActivity {
             }
         });
 
-    }
+        imgDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showDialog(999);
+            }
+        });
+
+
+
+    } 
+
+
 
     void buildDialog(String namaTempat,String tanggal){
         new AlertDialog.Builder(this)
@@ -70,5 +122,29 @@ public class TempatFutsalDetailActivity extends AppCompatActivity {
                         finish();
                     }})
                 .setNegativeButton(android.R.string.no, null).show();
+    }
+
+    private DatePickerDialog.OnDateSetListener DateTanggalLahirListener = new DatePickerDialog.OnDateSetListener() {
+        @Override
+        public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
+
+            year = i;
+            month = i1;
+            day = i2;
+
+            txtTanggal.setText(day+" - "+(month+1)+" - "+year);
+
+        }
+    };
+
+    //untuk metode memanggil calendar
+    @Override
+    protected Dialog onCreateDialog(int id) {
+
+        if (id == 999){
+            return new DatePickerDialog(this,
+                    DateTanggalLahirListener,calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH),calendar.get(Calendar.DAY_OF_MONTH));
+        }
+        return super.onCreateDialog(id);
     }
 }
