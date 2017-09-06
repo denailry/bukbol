@@ -28,7 +28,6 @@ public class ProfileAdapter extends ArrayAdapter<ProfileItem> {
         super(context,0,profileItems);
     }
 
-
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
@@ -46,7 +45,6 @@ public class ProfileAdapter extends ArrayAdapter<ProfileItem> {
 
         ImageView itemImage = (ImageView) listItemView.findViewById(R.id.profile_item_image);
         itemImage.setImageResource(currentItem.getImageResource());
-
 
         return listItemView;
     }

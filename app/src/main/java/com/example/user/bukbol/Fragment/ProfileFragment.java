@@ -39,7 +39,7 @@ public class ProfileFragment extends Fragment {
         profileItems = new ArrayList<>();
 
 
-        profileItems.add(new ProfileItem("Personal Details",R.drawable.ic_person));
+        profileItems.add(new ProfileItem("Account Settings",R.drawable.ic_person));
         profileItems.add(new ProfileItem("Help",R.drawable.ic_help));
         profileItems.add(new ProfileItem("Notifications",R.drawable.ic_notification));
         profileItems.add(new ProfileItem("Settings",R.drawable.ic_settings));
@@ -64,18 +64,14 @@ public class ProfileFragment extends Fragment {
 
 
                 ProfileItem currentItem = profileItems.get(i);
+                Intent intent = new Intent(getActivity(),DetailProfileActivity.class);
+                intent.putExtra("profile",currentItem.getItemName());
+                startActivity(intent);
 
-                switch (currentItem.getItemName()){
-
-                    case "Help":{
-                        Intent intent = new Intent(getActivity(),DetailProfileActivity.class);
-                        startActivity(intent);
-                        break;
-                    }
-                }
             }
+
+
         });
         return v;
     }
-
 }
