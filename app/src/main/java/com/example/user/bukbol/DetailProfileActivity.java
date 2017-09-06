@@ -1,18 +1,18 @@
 package com.example.user.bukbol;
 
-import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
 import android.view.View;
-import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.user.bukbol.adapter.BookingCardAdapter;
@@ -48,6 +48,7 @@ public class DetailProfileActivity extends AppCompatActivity implements BookingL
         switch (profileType){
             case "FAQ":{
                 setContentView(R.layout.profile_faq);
+                initHelp();
                 break;
             }
             case "Account Settings":{
@@ -159,4 +160,23 @@ public class DetailProfileActivity extends AppCompatActivity implements BookingL
 
     }
 
+    private void initHelp(){
+        TextView view = (TextView)findViewById(R.id.tata_cara_TV);
+
+        String formattedText = "Setelah pemesanan,  anda dipersilahkan untuk segera membayar ke rekening <b>BANK AAA XXXXXXXX </b> dengan jumlah pembayaran sesuai dengan harga lapangan ditambah dengan kode unik." +
+                "<br>" +
+                "<br>" +
+                "Kami akan memeriksa status pembayaran Anda setiap hari pada pukul:<br>" +
+                "1. 06.00 WIB<br>" +
+                "2. 09.00 WIB<br>" +
+                "3. 12.00 WIB<br>" +
+                "4. 15.00 WIB<br>" +
+                "5. 18.00 WIB<br>" +
+                "6. 21.00 WIB<br>" +
+                "7. 24.00 WIB<br>" +
+                "<br>" +
+                "Jika Anda melakukan pembayaran setelah lewat tenggat waktu pembayaran dan tidak melewati masa pemeriksaan dari kami, maka pesanan anda akan segera <b>dibatalkan</b>.";
+
+        view.setText(Html.fromHtml(formattedText));
+    }
 }

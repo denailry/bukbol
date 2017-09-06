@@ -3,4 +3,16 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="tata_cara_pembayaran">      Setelah pemesanan,  anda dipersilahkan untuk segera membayar ke rekening BANK AAA XXXXXXXX dengan jumlah pembayaran sesuai dengan harga lapangan ditambah dengan kode unik.
+        Kami akan memeriksa status pembayaran Anda setiap hari pada pukul:
+1. 06.00 WIB
+2. 09.00 WIB
+3. 12.00 WIB
+4. 15.00 WIB
+5. 18.00 WIB
+6. 21.00 WIB
+7. 24.00 WIB
+
+Jika Anda melakukan pembayaran setelah lewat tenggat waktu pembayaran dan tidak melewati masa pemeriksaan dari kami, maka pesanan anda akan segera dibatalkan.</string>
 </resources>

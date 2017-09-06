@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/create_account_layout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/colorPrimary"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/wide_margin"
+    tools:context="com.example.user.bukbol.LoginActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center">
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Fullname"
+            android:textSize="@dimen/subheading"
+            android:textColor="@android:color/white"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@android:color/white"
+            android:layout_marginBottom="24sp"/><TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="E-mail"
+            android:textSize="@dimen/subheading"
+            android:textColor="@android:color/white"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@android:color/white"
+            android:layout_marginBottom="24sp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Password"
+            android:textSize="@dimen/subheading"
+            android:textColor="@android:color/white"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@android:color/white"
+            android:layout_marginBottom="24dp"/><TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Confirm Password"
+            android:textSize="@dimen/subheading"
+            android:textColor="@android:color/white"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@android:color/white"
+            android:layout_marginBottom="24dp"/>
+
+        <Button
+            android:id="@+id/register_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            android:text="Create account"
+            android:backgroundTint="@color/colorPrimaryDark"/>
+
+    </LinearLayout>
+</LinearLayout>
