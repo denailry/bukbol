@@ -19,6 +19,7 @@ import com.example.user.bukbol.API.ApiInterface;
 import com.example.user.bukbol.R;
 import com.example.user.bukbol.TempatFutsalDetailActivity;
 import com.example.user.bukbol.adapter.BookingCardAdapter;
+import com.example.user.bukbol.data.BookDataset;
 import com.example.user.bukbol.data.PlaceDataset;
 import com.example.user.bukbol.data.PlaceModel;
 import com.example.user.bukbol.listener.BookingListener;
@@ -96,20 +97,21 @@ public class BookingFragment extends Fragment implements BookingListener{
 
         adapter = new BookingCardAdapter(listTempatFutsal, this);
         rvHomeBooking.setAdapter(adapter);
-        callDataHomeBooking();
+        callDataHomeBooking("");
 
         super.onActivityCreated(savedInstanceState);
     }
 
-    private void callDataHomeBooking() {
+    private void callDataHomeBooking(String keyword) {
 
         ApiInterface service = ApiClient.getClient().create(ApiInterface.class);
-        Call<PlaceModel> call = service.getPlaces();
+        Call<PlaceModel> call = service.getFilteredPlaces(keyword);
         call.enqueue(new Callback<PlaceModel>() {
             @Override
             public void onResponse(Call<PlaceModel> call, Response<PlaceModel> response) {
                 List<PlaceDataset> list = response.body().getPlaceDataset();
                 Log.d(TAG, "onResponse: berhasil"+list.size());
+                listTempatFutsal = new ArrayList<>();
                 for (int i=0; i<list.size();i++){
                     listTempatFutsal.add(list.get(i));
                 }
@@ -127,9 +129,8 @@ public class BookingFragment extends Fragment implements BookingListener{
     }
 
     private void searchLangsung(String s) {
-
+        callDataHomeBooking(s);
         Toast.makeText(getContext(), s, Toast.LENGTH_SHORT).show();
-
     }
 
     @Override
@@ -141,6 +142,11 @@ public class BookingFragment extends Fragment implements BookingListener{
         intent.putExtra("deskripsi",tempatFutsal.getDescription());
         intent.putExtra("id",tempatFutsal.getId());
         startActivity(intent);
+    }
+
+    @Override
+    public void onCardClicked(BookDataset bookDataset) {
+
     }
 
     private String ubahJam(int i){

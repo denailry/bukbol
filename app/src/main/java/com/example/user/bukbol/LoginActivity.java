@@ -105,6 +105,8 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
+
+
     private boolean validateLogin(EditText usernameField, EditText passwordField,List<PersonDataset> persons){
         String usernameText = usernameField.getText().toString();
         String passwordText = passwordField.getText().toString();

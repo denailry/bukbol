@@ -6,14 +6,15 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+<<<<<<< HEAD
 import android.widget.Button;
 import android.widget.ImageView;
+=======
+>>>>>>> ab7f3cbefa8e23b4a84a3d8f2f6eec55293d90f8
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.user.bukbol.R;
-import com.example.user.bukbol.data.PlaceDataset;
-import com.example.user.bukbol.listener.BookingListener;
 import com.example.user.bukbol.listener.JamListener;
 
 import java.util.ArrayList;
