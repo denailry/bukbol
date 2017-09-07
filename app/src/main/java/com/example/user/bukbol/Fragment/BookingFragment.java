@@ -146,10 +146,12 @@ public class BookingFragment extends Fragment implements BookingListener{
     private String ubahJam(int i){
         String hasil;
 
+        Log.d(TAG, "ubahJam: "+i);
+
         if (i<10){
             hasil = "0"+i+".00";
         }else{
-            hasil = i+"00";
+            hasil = i+".00";
         }
 
         Log.d(TAG, "ubahJam: "+hasil);

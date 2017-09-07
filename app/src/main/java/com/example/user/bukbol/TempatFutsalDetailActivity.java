@@ -25,9 +25,12 @@ import com.example.user.bukbol.API.ApiClient;
 import com.example.user.bukbol.API.ApiInterface;
 import com.example.user.bukbol.API.Session;
 import com.example.user.bukbol.adapter.JamAdapter;
+import com.example.user.bukbol.data.BookDataset;
 import com.example.user.bukbol.data.BookModel;
 import com.example.user.bukbol.data.FieldDataset;
 import com.example.user.bukbol.data.FieldModel;
+import com.example.user.bukbol.data.PlaceDataset;
+import com.example.user.bukbol.data.PlaceModel;
 import com.example.user.bukbol.listener.JamListener;
 
 import java.lang.reflect.Field;
@@ -50,7 +53,6 @@ public class TempatFutsalDetailActivity extends AppCompatActivity implements Jam
     @BindView(R.id.btn_continue_tempat)
     Button btnContinue;
     @BindView(R.id.btn_book_tempat) Button btnBooking;
-    @BindView(R.id.rv_jam_tempat) RecyclerView rJamTempat;
     @BindView(R.id.txt_nama_tempat)
     TextView txtNamaTempat;
     @BindView(R.id.alamat_tempat) TextView txtAlamat;
@@ -68,6 +70,10 @@ public class TempatFutsalDetailActivity extends AppCompatActivity implements Jam
 
     ArrayList<FieldDataset> listLapangan = new ArrayList<>();
 
+    ArrayList<Boolean> listBool = new ArrayList<>();
+
+    int thisJam = -1;
+
     Calendar calendar = Calendar.getInstance();
     int year= calendar.get(Calendar.YEAR);
     int month = calendar.get(Calendar.MONTH);
@@ -75,9 +81,13 @@ public class TempatFutsalDetailActivity extends AppCompatActivity implements Jam
 
     int idxSpinnerLapangan = 0;
 
+    long id;
+
     String lapangan;
 
     private List<FieldDataset> list;
+
+    ArrayList<BookDataset> listBook = new ArrayList<>();
 
     ArrayList<Integer> listJam = new ArrayList<>();
 
@@ -100,9 +110,10 @@ public class TempatFutsalDetailActivity extends AppCompatActivity implements Jam
         txtAlamat.setText(alamat);
 
         String jamBuka = intent.getStringExtra("jam");
+        Log.d(TAG, "onCreate: "+jamBuka);
         txtJam.setText(jamBuka);
 
-        long id = intent.getLongExtra("id",0);
+        id = intent.getLongExtra("id",0);
 
         ApiInterface service = ApiClient.getClient().create(ApiInterface.class);
         Call<FieldModel> call = service.getFields(id);
@@ -130,7 +141,7 @@ public class TempatFutsalDetailActivity extends AppCompatActivity implements Jam
         rvJam.setHasFixedSize(true);
         rvJam.setLayoutManager(new GridLayoutManager(getApplicationContext(), 2));
 
-        adapter = new JamAdapter(listJam,this);
+        adapter = new JamAdapter(listJam,listBool,this,getApplicationContext(),thisJam);
         rvJam.setAdapter(adapter);
         callJamData();
 
@@ -167,15 +178,27 @@ public class TempatFutsalDetailActivity extends AppCompatActivity implements Jam
     private void callJamData() {
 
         ApiInterface service = ApiClient.getClient().create(ApiInterface.class);
-        Call<BookModel> call = service.getBooks(Session.user.getUsername());
-        call.enqueue(new Callback<BookModel>() {
+        Call<PlaceModel> call = service.getPlaces(id);
+        call.enqueue(new Callback<PlaceModel>() {
             @Override
-            public void onResponse(Call<BookModel> call, Response<BookModel> response) {
-                
+            public void onResponse(Call<PlaceModel> call, Response<PlaceModel> response) {
+                List<PlaceDataset> list = response.body().getPlaceDataset();
+                int awal = list.get(0).getOpenHour();
+                int akhir = list.get(0).getCloseHour();
+
+                for (int i=awal; i<=akhir; i++){
+                    listJam.add(i);
+                    if (i%2==0){
+                        listBool.add(true);
+                    }else{
+                        listBool.add(false);
+                    }
+                }
+                adapter.refreshData(listJam,listBool);
             }
 
             @Override
-            public void onFailure(Call<BookModel> call, Throwable t) {
+            public void onFailure(Call<PlaceModel> call, Throwable t) {
 
             }
         });
@@ -258,7 +281,7 @@ public class TempatFutsalDetailActivity extends AppCompatActivity implements Jam
     }
 
     @Override
-    public void onJamClicked() {
-
+    public void onJamClicked(int x) {
+        thisJam = x;
     }
 }

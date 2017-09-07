@@ -6,6 +6,6 @@ package com.example.user.bukbol.listener;
 
 public interface JamListener {
 
-    void onJamClicked();
+    void onJamClicked(int x);
 
 }
