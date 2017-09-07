@@ -19,8 +19,9 @@ import android.widget.Toast;
 import com.example.user.bukbol.API.ApiClient;
 import com.example.user.bukbol.API.Session;
 import com.example.user.bukbol.adapter.BookingCardAdapter;
+import com.example.user.bukbol.data.BookDataset;
 import com.example.user.bukbol.data.PersonDataset;
-import com.example.user.bukbol.data.TempatFutsal;
+import com.example.user.bukbol.data.PlaceDataset;
 import com.example.user.bukbol.listener.BookingListener;
 import com.example.user.bukbol.upload.PersonAPI;
 
@@ -46,7 +47,7 @@ public class DetailProfileActivity extends AppCompatActivity implements BookingL
     //Favorite
     BookingCardAdapter adapter;
     RecyclerView favoriteRV;
-    ArrayList<TempatFutsal> listTempatFutsal = new ArrayList<>();
+    ArrayList<PlaceDataset> listTempatFutsal = new ArrayList<>();
 
     //Account setting
     @BindView(R.id.account_username) TextView usernameTV;
@@ -131,17 +132,27 @@ public class DetailProfileActivity extends AppCompatActivity implements BookingL
     }
 
     private void callDataFavoriteBooking() {
-        listTempatFutsal.add(new TempatFutsal("Saraga", "jalan ganesha","08.00 - 09.00","Rp 30.000 - 50.000/hour",R.drawable.tes));
-        listTempatFutsal.add(new TempatFutsal("Saraga", "jalan ganesha","08.00 - 09.00","Rp 30.000 - 50.000/hour",R.drawable.tes));
-        listTempatFutsal.add(new TempatFutsal("Saraga", "jalan ganesha","08.00 - 09.00","Rp 30.000 - 50.000/hour",R.drawable.tes));
-        listTempatFutsal.add(new TempatFutsal("Saraga", "jalan ganesha","08.00 - 09.00","Rp 30.000 - 50.000/hour",R.drawable.tes));
-
+        PlaceDataset tim = new PlaceDataset(1,"Futsal Town","Jalan bagusrangin", 8,21,"aplikasi baik",20000, 40000);
+        listTempatFutsal.add(tim);
+        listTempatFutsal.add(tim);
+        listTempatFutsal.add(tim);
         adapter.refreshData(listTempatFutsal);
     }
 
 
     @Override
-    public void onCardClicked(TempatFutsal tempatFutsal) {
+    public void onCardClicked(PlaceDataset tempatFutsal) {
+        Intent intent = new Intent(this, TempatFutsalDetailActivity.class);
+        intent.putExtra("namaTempat",tempatFutsal.getName());
+        intent.putExtra("alamat",tempatFutsal.getAddress());
+      //  intent.putExtra("jam",ubahJam(tempatFutsal.getOpenHour())+" - "+ubahJam(tempatFutsal.getCloseHour()));
+        intent.putExtra("deskripsi",tempatFutsal.getDescription());
+        intent.putExtra("id",tempatFutsal.getId());
+        startActivity(intent);
+    }
+
+    @Override
+    public void onCardClicked(BookDataset bookDataset) {
 
     }
 
@@ -196,9 +207,6 @@ public class DetailProfileActivity extends AppCompatActivity implements BookingL
 
                 } else {
                     changePassword.setVisibility(View.GONE);
-
-
-
 
                 }
             }

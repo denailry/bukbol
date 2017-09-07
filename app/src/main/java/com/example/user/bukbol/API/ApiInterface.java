@@ -21,11 +21,18 @@ public interface ApiInterface {
     @GET("field.php")
     Call<FieldModel> getFields(@Query("place_id") long id);
 
+    @GET("field.php")
+    Call<FieldModel> getFields();
+
+
     @GET("book.php")
     Call<BookModel> getBooks(@Query("username") String username);
 
     @GET("place.php")
     Call<PlaceModel> getPlaces(@Query("id") long id);
+
+    @GET("place.php")
+    Call<PlaceModel> getPlaces();
 
 
 }

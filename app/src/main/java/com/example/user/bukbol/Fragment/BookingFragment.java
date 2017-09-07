@@ -7,22 +7,31 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SearchView;
 import android.widget.Toast;
 
+import com.example.user.bukbol.API.ApiClient;
+import com.example.user.bukbol.API.ApiInterface;
 import com.example.user.bukbol.R;
 import com.example.user.bukbol.TempatFutsalDetailActivity;
 import com.example.user.bukbol.adapter.BookingCardAdapter;
-import com.example.user.bukbol.data.TempatFutsal;
+import com.example.user.bukbol.data.BookDataset;
+import com.example.user.bukbol.data.PlaceDataset;
+import com.example.user.bukbol.data.PlaceModel;
 import com.example.user.bukbol.listener.BookingListener;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -33,7 +42,7 @@ public class BookingFragment extends Fragment implements BookingListener{
 
     SearchView searchBooking;
 
-    ArrayList<TempatFutsal> listTempatFutsal = new ArrayList<>();
+    ArrayList<PlaceDataset> listTempatFutsal = new ArrayList<>();
 
     BookingCardAdapter adapter;
 
@@ -94,12 +103,28 @@ public class BookingFragment extends Fragment implements BookingListener{
     }
 
     private void callDataHomeBooking() {
-        listTempatFutsal.add(new TempatFutsal("Saraga", "jalan ganesha","08.00 - 09.00","Rp 30.000 - 50.000/hour",R.drawable.tes));
-        listTempatFutsal.add(new TempatFutsal("Saraga", "jalan ganesha","08.00 - 09.00","Rp 30.000 - 50.000/hour",R.drawable.tes));
-        listTempatFutsal.add(new TempatFutsal("Saraga", "jalan ganesha","08.00 - 09.00","Rp 30.000 - 50.000/hour",R.drawable.tes));
-        listTempatFutsal.add(new TempatFutsal("Saraga", "jalan ganesha","08.00 - 09.00","Rp 30.000 - 50.000/hour",R.drawable.tes));
 
-        adapter.refreshData(listTempatFutsal);
+        ApiInterface service = ApiClient.getClient().create(ApiInterface.class);
+        Call<PlaceModel> call = service.getPlaces();
+        call.enqueue(new Callback<PlaceModel>() {
+            @Override
+            public void onResponse(Call<PlaceModel> call, Response<PlaceModel> response) {
+                List<PlaceDataset> list = response.body().getPlaceDataset();
+                Log.d(TAG, "onResponse: berhasil"+list.size());
+                for (int i=0; i<list.size();i++){
+                    listTempatFutsal.add(list.get(i));
+                }
+                adapter.refreshData(listTempatFutsal);
+            }
+
+            @Override
+            public void onFailure(Call<PlaceModel> call, Throwable t) {
+
+                Log.d(TAG, "onFailure: gagal");
+            }
+        });
+
+        Log.d(TAG, "callDataHomeBooking: "+listTempatFutsal.size());
     }
 
     private void searchLangsung(String s) {
@@ -109,8 +134,32 @@ public class BookingFragment extends Fragment implements BookingListener{
     }
 
     @Override
-    public void onCardClicked(TempatFutsal tempatFutsal) {
+    public void onCardClicked(PlaceDataset tempatFutsal) {
         Intent intent = new Intent(getActivity(), TempatFutsalDetailActivity.class);
+        intent.putExtra("namaTempat",tempatFutsal.getName());
+        intent.putExtra("alamat",tempatFutsal.getAddress());
+        intent.putExtra("jam",ubahJam(tempatFutsal.getOpenHour())+" - "+ubahJam(tempatFutsal.getCloseHour()));
+        intent.putExtra("deskripsi",tempatFutsal.getDescription());
+        intent.putExtra("id",tempatFutsal.getId());
         startActivity(intent);
+    }
+
+    @Override
+    public void onCardClicked(BookDataset bookDataset) {
+
+    }
+
+    private String ubahJam(int i){
+        String hasil;
+
+        if (i<10){
+            hasil = "0"+i+".00";
+        }else{
+            hasil = i+"00";
+        }
+
+        Log.d(TAG, "ubahJam: "+hasil);
+
+        return hasil;
     }
 }

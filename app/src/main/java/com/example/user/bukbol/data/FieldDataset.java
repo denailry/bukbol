@@ -10,10 +10,10 @@ FieldDataset {
 
     @SerializedName("id")
     @Expose
-    private Integer id;
+    private long id;
     @SerializedName("place_id")
     @Expose
-    private Integer placeId;
+    private long placeId;
     @SerializedName("name")
     @Expose
     private String name;
@@ -24,19 +24,19 @@ FieldDataset {
     @Expose
     private Integer count;
 
-    public Integer getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(long id) {
         this.id = id;
     }
 
-    public Integer getPlaceId() {
+    public long getPlaceId() {
         return placeId;
     }
 
-    public void setPlaceId(Integer placeId) {
+    public void setPlaceId(long placeId) {
         this.placeId = placeId;
     }
 

@@ -8,7 +8,7 @@ public class PlaceDataset {
 
     @SerializedName("id")
     @Expose
-    private Integer id;
+    private long id;
     @SerializedName("name")
     @Expose
     private String name;
@@ -31,11 +31,22 @@ public class PlaceDataset {
     @Expose
     private int highPrice;
 
-    public Integer getId() {
+    public PlaceDataset(long id, String name, String address, Integer openHour, Integer closeHour, String description,int lowPrice, int highPrice) {
+        this.id = id;
+        this.name = name;
+        this.address = address;
+        this.openHour = openHour;
+        this.closeHour = closeHour;
+        this.description = description;
+        this.lowPrice = lowPrice;
+        this.highPrice = highPrice;
+    }
+
+    public long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(long id) {
         this.id = id;
     }
 

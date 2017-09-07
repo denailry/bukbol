@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.user.bukbol.R;
-import com.example.user.bukbol.data.TempatFutsal;
+import com.example.user.bukbol.data.PlaceDataset;
 import com.example.user.bukbol.listener.BookingListener;
 
 import java.util.ArrayList;
@@ -24,10 +24,10 @@ import butterknife.ButterKnife;
 public class BookingCardAdapter extends RecyclerView.Adapter<BookingCardAdapter.ViewHolder> {
 
 
-    private ArrayList<TempatFutsal> listTempatFutsal;
+    private ArrayList<PlaceDataset> listTempatFutsal;
     BookingListener listener;
 
-    public BookingCardAdapter(ArrayList<TempatFutsal> listTempatFutsal, BookingListener listener) {
+    public BookingCardAdapter(ArrayList<PlaceDataset> listTempatFutsal, BookingListener listener) {
         this.listTempatFutsal = listTempatFutsal;
         this.listener = listener;
     }
@@ -58,12 +58,12 @@ public class BookingCardAdapter extends RecyclerView.Adapter<BookingCardAdapter.
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        final TempatFutsal tempatFutsal = listTempatFutsal.get(position);
+        final PlaceDataset tempatFutsal = listTempatFutsal.get(position);
 
-        holder.txtNamaTempat.setText(tempatFutsal.getNama());
-        holder.txtAlamat.setText(tempatFutsal.getAlamat());
-        holder.txtHarga.setText(tempatFutsal.getHarga());
-        holder.imgFull.setImageResource(tempatFutsal.getGambar());
+        holder.txtNamaTempat.setText(tempatFutsal.getName());
+        holder.txtAlamat.setText(tempatFutsal.getAddress());
+        holder.txtHarga.setText("Rp "+editRupiah(String.valueOf(tempatFutsal.getLowPrice() ))+"  -  "+editRupiah(String.valueOf(tempatFutsal.getHighPrice()))+"/hour");
+        //holder.imgFull.setImageResource(tempatFutsal);
 
         holder.card.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,8 +83,22 @@ public class BookingCardAdapter extends RecyclerView.Adapter<BookingCardAdapter.
     public void onAttachedToRecyclerView(RecyclerView recyclerView) {
         super.onAttachedToRecyclerView(recyclerView);
     }
-    public void refreshData(ArrayList<TempatFutsal> listTempatFutsal){
+    public void refreshData(ArrayList<PlaceDataset> listTempatFutsal){
         this.listTempatFutsal = listTempatFutsal;
         notifyDataSetChanged();
+    }
+
+    private String editRupiah(String rupiah){
+        String edtRuiah = rupiah;
+        int length = edtRuiah.length();
+
+        //100000
+        while (length>3){
+            edtRuiah = edtRuiah.substring(0,(length-3))+"."+edtRuiah.substring((length-3),edtRuiah.length());
+            length = length-3;
+        }
+
+
+        return edtRuiah;
     }
 }

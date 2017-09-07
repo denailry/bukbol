@@ -1,16 +1,17 @@
 
 package com.example.user.bukbol.data;
 
-import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+
+import java.util.List;
 
 public class FieldModel {
 
     @SerializedName("status")
     @Expose
     private Boolean status;
-    @SerializedName("fieldDataset")
+    @SerializedName("dataset")
     @Expose
     private List<FieldDataset> fieldDataset = null;
 
