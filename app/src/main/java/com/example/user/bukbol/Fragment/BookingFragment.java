@@ -97,20 +97,21 @@ public class BookingFragment extends Fragment implements BookingListener{
 
         adapter = new BookingCardAdapter(listTempatFutsal, this);
         rvHomeBooking.setAdapter(adapter);
-        callDataHomeBooking();
+        callDataHomeBooking("");
 
         super.onActivityCreated(savedInstanceState);
     }
 
-    private void callDataHomeBooking() {
+    private void callDataHomeBooking(String keyword) {
 
         ApiInterface service = ApiClient.getClient().create(ApiInterface.class);
-        Call<PlaceModel> call = service.getPlaces();
+        Call<PlaceModel> call = service.getFilteredPlaces(keyword);
         call.enqueue(new Callback<PlaceModel>() {
             @Override
             public void onResponse(Call<PlaceModel> call, Response<PlaceModel> response) {
                 List<PlaceDataset> list = response.body().getPlaceDataset();
                 Log.d(TAG, "onResponse: berhasil"+list.size());
+                listTempatFutsal = new ArrayList<>();
                 for (int i=0; i<list.size();i++){
                     listTempatFutsal.add(list.get(i));
                 }
@@ -128,9 +129,8 @@ public class BookingFragment extends Fragment implements BookingListener{
     }
 
     private void searchLangsung(String s) {
-
+        callDataHomeBooking(s);
         Toast.makeText(getContext(), s, Toast.LENGTH_SHORT).show();
-
     }
 
     @Override

@@ -32,6 +32,9 @@ public interface ApiInterface {
     Call<PlaceModel> getPlaces(@Query("id") long id);
 
     @GET("place.php")
+    Call<PlaceModel> getFilteredPlaces(@Query("keyword") String keyword);
+
+    @GET("place.php")
     Call<PlaceModel> getPlaces();
 
 

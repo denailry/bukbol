@@ -108,8 +108,13 @@ public class TempatFutsalDetailActivity extends AppCompatActivity implements Jam
             @Override
             public void onResponse(Call<FieldModel> call, Response<FieldModel> response) {
 
+
+
+                Log.d(TAG, "onResponse: "+response.body().getFieldDataset().size());
+
                 list = response.body().getFieldDataset();
 
+                listLapangan = new ArrayList<FieldDataset>();
                 if (response.body().getStatus()){
                     for (int i=0; i<list.size(); i++){
                         listLapangan.add(list.get(i));
