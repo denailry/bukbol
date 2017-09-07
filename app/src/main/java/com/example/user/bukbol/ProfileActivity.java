@@ -110,7 +110,7 @@ public class ProfileActivity extends AppCompatActivity {
             ivProfile.setImageURI(uri);
             try {
                 String path = UriManip.getFilePath(getApplicationContext(), uri);
-                uploadFile(path, getIndex());
+                uploadFile(path);
             } catch (URISyntaxException e) {
                 Log.e("TEST", "ERROR 1");
             }
@@ -118,15 +118,11 @@ public class ProfileActivity extends AppCompatActivity {
         }
     }
 
-    private int getIndex() {
-        
-    }
-
-    private void uploadFile(String path, int index) {
+    private void uploadFile(String path) {
         // Map is used to multipart the file using okhttp3.RequestBody
 
         File file = new File(path);
-        String newName = Session.user.getUsername() + String.valueOf(index) + getFileExtension(file.getName());
+        String newName = Session.user.getUsername() + getFileExtension(file.getName());
 
         // Parsing any Media type file
         RequestBody requestBody = RequestBody.create(MediaType.parse("*/*"), file);
@@ -175,5 +171,17 @@ public class ProfileActivity extends AppCompatActivity {
         }
 
         return extension;
+    }
+
+    @Override
+    protected void onResume() {
+
+        super.onResume();
+
+        profileName.setText(Session.user.getName());
+        profileEmail.setText(Session.user.getEmail());
+        profilePhone.setText(Session.user.getPhone());
+
+
     }
 }

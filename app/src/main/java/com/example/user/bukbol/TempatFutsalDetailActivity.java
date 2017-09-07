@@ -4,9 +4,9 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -30,7 +30,6 @@ import com.example.user.bukbol.data.FieldDataset;
 import com.example.user.bukbol.data.FieldModel;
 import com.example.user.bukbol.listener.JamListener;
 
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -50,7 +49,6 @@ public class TempatFutsalDetailActivity extends AppCompatActivity implements Jam
     @BindView(R.id.btn_continue_tempat)
     Button btnContinue;
     @BindView(R.id.btn_book_tempat) Button btnBooking;
-    @BindView(R.id.rv_jam_tempat) RecyclerView rJamTempat;
     @BindView(R.id.txt_nama_tempat)
     TextView txtNamaTempat;
     @BindView(R.id.alamat_tempat) TextView txtAlamat;
@@ -109,10 +107,9 @@ public class TempatFutsalDetailActivity extends AppCompatActivity implements Jam
         call.enqueue(new Callback<FieldModel>() {
             @Override
             public void onResponse(Call<FieldModel> call, Response<FieldModel> response) {
-                Log.d(TAG, "onResponse: "+response.body().getFieldDataset().size());
-
                 list = response.body().getFieldDataset();
 
+                listLapangan = new ArrayList<FieldDataset>();
                 if (response.body().getStatus()){
                     for (int i=0; i<list.size(); i++){
                         listLapangan.add(list.get(i));

@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.user.bukbol.R;
+import com.example.user.bukbol.data.BookDataset;
 import com.example.user.bukbol.data.PlaceDataset;
 import com.example.user.bukbol.listener.BookingListener;
 
@@ -24,11 +25,11 @@ import butterknife.ButterKnife;
 public class HistoryBookAdapter extends RecyclerView.Adapter<HistoryBookAdapter.ViewHolder> {
 
 
-    private ArrayList<PlaceDataset> listTempatFutsal;
+    private ArrayList<BookDataset> bookings;
     BookingListener listener;
 
-    public HistoryBookAdapter(ArrayList<PlaceDataset> listTempatFutsal, BookingListener listener) {
-        this.listTempatFutsal = listTempatFutsal;
+    public HistoryBookAdapter(ArrayList<BookDataset> bookings, BookingListener listener) {
+        this.bookings = bookings;
         this.listener = listener;
     }
 
@@ -38,6 +39,8 @@ public class HistoryBookAdapter extends RecyclerView.Adapter<HistoryBookAdapter.
         @BindView(R.id.txt_alamat_histori) TextView txtAlamat;
         @BindView(R.id.txt_histori_status) TextView txtStatus;
         @BindView(R.id.txt_harga_histori) TextView txtHarga;
+        @BindView(R.id.txt_tanggal_histori) TextView txtTanggal;
+        @BindView(R.id.txt_jam_histori) TextView txtJam;
         @BindView(R.id.card_book) CardView card;
 
 
@@ -57,17 +60,19 @@ public class HistoryBookAdapter extends RecyclerView.Adapter<HistoryBookAdapter.
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        final PlaceDataset tempatFutsal = listTempatFutsal.get(position);
+        final BookDataset bookDataset = bookings.get(position);
 
-        holder.txtNamaTempat.setText(tempatFutsal.getName());
-        holder.txtAlamat.setText(tempatFutsal.getAddress());
-        holder.txtHarga.setText(tempatFutsal.getLowPrice());
-        holder.txtStatus.setText("On progress");
+        holder.txtNamaTempat.setText(bookDataset.getPlaceId().toString());
+        holder.txtAlamat.setText(bookDataset.getPlaceId().toString());
+        holder.txtHarga.setText(bookDataset.getPrice().toString());
+        holder.txtStatus.setText(bookDataset.getStatus().toString());
+        holder.txtTanggal.setText(bookDataset.getDate().toString());
+        holder.txtJam.setText(bookDataset.getTime().toString());
 
         holder.card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                listener.onCardClicked(tempatFutsal);
+                listener.onCardClicked(bookDataset);
             }
         });
 
@@ -75,15 +80,15 @@ public class HistoryBookAdapter extends RecyclerView.Adapter<HistoryBookAdapter.
 
     @Override
     public int getItemCount() {
-        return listTempatFutsal.size();
+        return bookings.size();
     }
 
     @Override
     public void onAttachedToRecyclerView(RecyclerView recyclerView) {
         super.onAttachedToRecyclerView(recyclerView);
     }
-    public void refreshData(ArrayList<PlaceDataset> listTempatFutsal){
-        this.listTempatFutsal = listTempatFutsal;
+    public void refreshData(ArrayList<BookDataset> bookDatasets){
+        this.bookings = bookDatasets;
         notifyDataSetChanged();
     }
 }

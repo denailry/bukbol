@@ -139,6 +139,13 @@
                 android:textColor="@android:color/tertiary_text_light"
                 android:layout_marginBottom="@dimen/wide_margin"
                 />
+            <Button
+                android:id="@+id/account_save_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/colorPrimaryDark"
+                android:text="SAVE"
+                android:textColor="@android:color/white"/>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
