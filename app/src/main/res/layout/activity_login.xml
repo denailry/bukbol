@@ -34,6 +34,7 @@
             android:id="@+id/login_email_edit_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
             android:backgroundTint="@android:color/white"
             android:layout_marginBottom="24sp"/>
 
@@ -47,6 +48,7 @@
             android:id="@+id/login_password_edit_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
             android:backgroundTint="@android:color/white"
             android:inputType="textPassword"
             android:layout_marginBottom="24dp"/>
