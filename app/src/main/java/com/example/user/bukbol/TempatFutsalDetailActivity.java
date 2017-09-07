@@ -119,6 +119,11 @@ public class TempatFutsalDetailActivity extends AppCompatActivity implements Jam
         call.enqueue(new Callback<FieldModel>() {
             @Override
             public void onResponse(Call<FieldModel> call, Response<FieldModel> response) {
+
+
+
+                Log.d(TAG, "onResponse: "+response.body().getFieldDataset().size());
+
                 list = response.body().getFieldDataset();
 
                 listLapangan = new ArrayList<FieldDataset>();

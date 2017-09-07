@@ -110,12 +110,14 @@ public class BookingFragment extends Fragment implements BookingListener{
             @Override
             public void onResponse(Call<PlaceModel> call, Response<PlaceModel> response) {
                 List<PlaceDataset> list = response.body().getPlaceDataset();
-                Log.d(TAG, "onResponse: berhasil"+list.size());
-                listTempatFutsal = new ArrayList<>();
-                for (int i=0; i<list.size();i++){
-                    listTempatFutsal.add(list.get(i));
+                if(list != null) {
+                    Log.d(TAG, "onResponse: berhasil"+list.size());
+                    listTempatFutsal = new ArrayList<>();
+                    for (int i=0; i<list.size();i++){
+                        listTempatFutsal.add(list.get(i));
+                    }
+                    adapter.refreshData(listTempatFutsal);
                 }
-                adapter.refreshData(listTempatFutsal);
             }
 
             @Override
